@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
@@ -19,6 +20,7 @@ export const Home = () => {
     <div className="mt-5">
       <form className="container card" onSubmit={handleSubmitRegister}>
         <div className="card-body">
+          <h2 className="text-center">Register</h2>
           <div className="mb-3">
             <label htmlFor="exampleInputEmail1" className="form-label">
               Email address
@@ -53,13 +55,18 @@ export const Home = () => {
               className="form-check-input"
               id="exampleCheck1"
             />
-            <label className="form-check-label" for="exampleCheck1">
+            <label className="form-check-label" htmlFor="exampleCheck1">
               Check me out
             </label>
           </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
+          <hr className="my-3" />
+          <Link to={"/login"}>
+            ¿Posees una cuenta? {""}
+            <span className="text-primary"> Haz click acá </span>
+          </Link>
         </div>
       </form>
     </div>

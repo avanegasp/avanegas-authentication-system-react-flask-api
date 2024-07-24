@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
+      token: null,
       demo: [
         {
           title: "FIRST",
@@ -51,6 +52,9 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
+          localStorage.setItem("token", JSON.stringify({ token: data.token }));
+          setStore({ token: data.token });
+          //   return true;
           //   console.log("esto es data", data);
           return data;
         } catch (error) {

@@ -1,11 +1,12 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 const Login = () => {
   const { store, actions } = useContext(Context);
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,6 +15,9 @@ const Login = () => {
     const response = await actions.login(email, password);
     console.log(response);
     console.log("email-password desde login", email, password);
+    // if (response) {
+    //   navigate("/");
+    // }
   };
 
   return (

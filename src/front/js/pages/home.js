@@ -7,8 +7,11 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmitRegister = (e) => {
+
+  const handleSubmitRegister = async (e) => {
     e.preventDefault();
+    const response = await actions.register(email, password);
+    console.log(response);
     console.log("email-password", email, password);
   };
 

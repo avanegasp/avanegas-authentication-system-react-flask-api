@@ -6,6 +6,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -34,15 +35,41 @@ def signup():
     
     password_hash = generate_password_hash(password)
 
+    print(password_hash)
+
     if User.query.filter_by(email=email).first() is not None:
         return jsonify({"error":"Email already taken"}), 400
     
     try:
-        new_user = User(email=email, password=password, is_active=True)
+        new_user = User(email=email, password=password_hash, is_active=True)
         db.session.add(new_user)
         db.session.commit()
-        return jsonify({"message":f"User with the email {new_user.email} created successfully"}), 201
+        return jsonify({"message":f"User with the email {new_user.email} was created successfully"}), 201
 
     except Exception as error:
         db.session.rollback()
         return jsonify({"error": f"{error}"}), 500
+    
+@api.route("/signin", methods=["POST"])
+def signin():
+    body = request.json
+
+    email = body.get("email", None)
+    password = body.get("password", None)
+
+    if email is None or password is None:
+        return jsonify({"error": "Email and password required"}),400
+    
+    user = User.query.filter_by(email=email).first()
+    
+    if user is None:
+        return jsonify({"error": "User not found"}), 404
+    
+    print(user.password)
+
+    if not check_password_hash(user.password, password):
+        return jsonify({"error": "error while login in"}),400
+    
+    user_token = create_access_token({"id": user.id, "email": user.email})
+    return jsonify({"token": user_token})
+

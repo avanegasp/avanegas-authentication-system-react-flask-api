@@ -9,13 +9,16 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmitRegister = async (e) => {
+  const handleSubmitLogin = async (e) => {
     e.preventDefault();
+    const response = await actions.login(email, password);
+    console.log(response);
+    console.log("email-password desde login", email, password);
   };
 
   return (
     <div className="mt-5">
-      <form className="container card" onSubmit={handleSubmitRegister}>
+      <form className="container card" onSubmit={handleSubmitLogin}>
         <div className="card-body">
           <h2 className="text-center">Login</h2>
           <div className="mb-3">
@@ -60,8 +63,8 @@ const Login = () => {
             Submit
           </button>
           <hr className="my-3" />
-          <Link to={"/login"}>
-            ¿Posees una cuenta? {""}
+          <Link to={"/"}>
+            ¿Ya estás registrado? {""}
             <span className="text-primary"> Haz click acá </span>
           </Link>
         </div>

@@ -37,6 +37,26 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log(error);
         }
       },
+      login: async (email, password) => {
+        try {
+          const response = await fetch(
+            process.env.BACKEND_URL + "/api/signin",
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email, password }),
+            }
+          );
+          if (!response.ok) {
+            return false;
+          }
+          const data = await response.json();
+          //   console.log("esto es data", data);
+          return data;
+        } catch (error) {
+          console.log(error);
+        }
+      },
     },
   };
 };

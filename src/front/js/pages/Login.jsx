@@ -12,12 +12,14 @@ const Login = () => {
 
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
-    const response = await actions.login(email, password);
-    console.log(response);
-    console.log("email-password desde login", email, password);
-    // if (response) {
-    //   navigate("/");
-    // }
+    const isLoggedIn = await actions.login(email, password);
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+
+    // const response = await actions.login(email, password);
+    // console.log(response);
+    // console.log("email-password desde login", email, password);
   };
 
   return (

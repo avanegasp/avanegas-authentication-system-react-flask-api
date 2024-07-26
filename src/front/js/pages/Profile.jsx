@@ -10,7 +10,7 @@ const Profile = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     const data = await actions.createPost(content);
-    console.log(content);
+    console.log("content.....", content);
   }
 
   useEffect(() => {
@@ -26,18 +26,19 @@ const Profile = () => {
   //   console.log("esto es jwt", jwt);
   return (
     <div className="container">
-      <h1 className="mb-3 mt-3">
+      <div>
+        <h1 className="mb-3 mt-3">Profile </h1>
         <span className="text-primary">
-          Profile {store.userData && store.userData.email}
+          {store.userData && store.userData.email}
         </span>
-      </h1>
+      </div>
       <div className="card">
         <div className="card-body">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label className="form-label">Contenido</label>
+              <label className="form-label">Content</label>
               <textarea
-                placeholder="contenido"
+                placeholder="content"
                 className="form-control"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
@@ -54,7 +55,7 @@ const Profile = () => {
           return (
             <div key={post.id + post.user_id}>
               {post.content}
-              <hr />;
+              <hr />
             </div>
           );
         })}

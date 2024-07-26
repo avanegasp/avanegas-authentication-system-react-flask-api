@@ -87,27 +87,32 @@ def get_user_data():
 @api.route("/post", methods=["POST"])
 @jwt_required() #se asegura que el usuario esté autenticado y acá se obtiene el id y el email de user_token
 def create_post():
-
     body = request.json
     user_data = get_jwt_identity() #{"id": valor, "email": valor}
     content = body.get("content", None)
-    #ACÁ HAY QUE VALIDAR QUE ESE USER DATA SEA EL QUE VIENE DEL TOKEN O QUE SEA EL VERDADERO
+    
+    if content is None:
+        return jsonify({"error": "Content is required"}), 400
+    
+    if "id" not in user_data:
+        return jsonify({"error": "Invalid user data"}), 401
 
     try:
         new_post = Post(content=content, user_id=user_data["id"])
         db.session.add(new_post)
         db.session.commit()
         db.session.refresh(new_post)
-        return jsonify({"post": new_post.serialize()}),201
+        return jsonify({"post": new_post.serialize()}), 201
 
     except Exception as error:
+        print("Error creating post:", error)
         return jsonify({"error": f"{error}"}), 500
-    
+
 @api.route("/post/me", methods=["GET"])
 @jwt_required()
 def get_post_from_logged_user():
     user_data = get_jwt_identity()
     user_posts = Post.query.filter_by(user_id=user_data["id"]).all()
     serialized_posts = [post.serialize() for post in user_posts]
-    return jsonify({"post":serialized_posts}),200
+    return jsonify({"posts":serialized_posts}),200
         

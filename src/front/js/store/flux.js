@@ -54,7 +54,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
-          localStorage.setItem("token", JSON.stringify({ token: data.token }));
+          localStorage.setItem("token", data.token);
           setStore({ token: data.token });
           return true;
           //   console.log("esto es data", data);
@@ -115,6 +115,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         if (!response.ok) return false;
         const data = await response.json();
         setStore({ userData: data });
+      },
+      logout: () => {
+        localStorage.removeItem("token");
       },
     },
   };

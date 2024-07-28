@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     const isLoggedIn = await actions.login(email, password);
     if (isLoggedIn) {
-      navigate("/profile");
+      navigate("/private");
     }
 
     // const response = await actions.login(email, password);

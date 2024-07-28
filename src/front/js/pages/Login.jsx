@@ -23,8 +23,15 @@ const Login = () => {
   };
 
   return (
-    <div className="mt-5">
-      <form className="container card" onSubmit={handleSubmitLogin}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <form
+        className="container card"
+        style={{ width: "100%", maxWidth: "500px" }}
+        onSubmit={handleSubmitLogin}
+      >
         <div className="card-body">
           <h2 className="text-center">Login</h2>
           <div className="mb-3">
@@ -55,23 +62,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
-          </div>
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
           <hr className="my-3" />
           <Link to={"/"}>
-            ¿Ya estás registrado? {""}
-            <span className="text-primary"> Haz click acá </span>
+            ¿You don't have a register? {""}
+            <span className="text-primary"> Click here </span>
           </Link>
         </div>
       </form>

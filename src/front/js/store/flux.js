@@ -18,7 +18,6 @@ const getState = ({ getStore, getActions, setStore }) => {
       userData: null,
     },
     actions: {
-      // Use getActions to call a function within a fuction
       register: async (email, password) => {
         try {
           const response = await fetch(
@@ -100,10 +99,18 @@ const getState = ({ getStore, getActions, setStore }) => {
             return false;
           }
           const data = await response.json();
+          console.log("data desde flux", data);
           return data;
         } catch (error) {
           console.log(error);
         }
+      },
+      addPostToStore: (post) => {
+        const store = getStore();
+        console.log("Esto es store.post....", store.post);
+        setStore({
+          posts: [...store.posts, post],
+        });
       },
       getUserData: async () => {
         const jwtToken = localStorage.getItem("token");
@@ -118,6 +125,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       logout: () => {
         localStorage.removeItem("token");
+        setStore({ userData: null });
       },
     },
   };

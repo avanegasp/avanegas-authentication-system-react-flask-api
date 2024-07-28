@@ -1,28 +1,34 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 
 export const Home = () => {
   const { store, actions } = useContext(Context);
-  const navigate = useNavigate;
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmitRegister = async (e) => {
     e.preventDefault();
     const response = await actions.register(email, password);
-    console.log(response);
-    console.log("email-password", email, password);
-    // if (response) {
-    //   navigate("/login");
-    // }
+    // console.log(response);
+    // console.log("email-password", email, password);
+    if (response) {
+      navigate("/login");
+    }
   };
 
   return (
-    <div className="mt-5">
-      <form className="container card" onSubmit={handleSubmitRegister}>
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <form
+        className="card"
+        style={{ width: "100%", maxWidth: "500px" }}
+        onSubmit={handleSubmitRegister}
+      >
         <div className="card-body">
           <h2 className="text-center">Register</h2>
           <div className="mb-3">
@@ -53,24 +59,12 @@ export const Home = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="mb-3 form-check">
-            <input
-              type="checkbox"
-              className="form-check-input"
-              id="exampleCheck1"
-            />
-            <label className="form-check-label" htmlFor="exampleCheck1">
-              Check me out
-            </label>
-          </div>
+
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
           <hr className="my-3" />
-          <Link to={"/login"}>
-            ¿Posees una cuenta? {""}
-            <span className="text-primary"> Haz click acá </span>
-          </Link>
+          <Link to={"/login"}>Click here, if you have an account {""}</Link>
         </div>
       </form>
     </div>

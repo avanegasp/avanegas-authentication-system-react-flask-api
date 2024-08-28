@@ -2,6 +2,9 @@
 
 Este proyecto es una aplicación web de autenticación de usuarios que combina un backend robusto con Python y Flask y un frontend dinámico construido con React.js. La solución sigue las mejores prácticas de desarrollo de APIs RESTful para la creación de sistemas de autenticación seguros, ofreciendo registro, inicio de sesión, validación de acceso a rutas privadas, y cierre de sesión.
 
+<img width="1331" alt="image" src="https://github.com/user-attachments/assets/c8cfc237-601a-4745-af25-b2d855d889c8">
+
+
 ## 🚀 Características Principales
 
 - **Registro de Usuario:** Permite a los usuarios registrarse con un correo electrónico y contraseña, almacenando la información de manera segura en una base de datos. Tras el registro, el usuario es redirigido al formulario de inicio de sesión.

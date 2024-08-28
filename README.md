@@ -4,24 +4,24 @@ Este proyecto es una aplicación web de autenticación de usuarios que combina u
 
 ## 🚀 Características Principales
 
-**Registro de Usuario:** Permite a los usuarios registrarse con un correo electrónico y contraseña, almacenando la información de manera segura en una base de datos. Tras el registro, el usuario es redirigido al formulario de inicio de sesión.
+- **Registro de Usuario:** Permite a los usuarios registrarse con un correo electrónico y contraseña, almacenando la información de manera segura en una base de datos. Tras el registro, el usuario es redirigido al formulario de inicio de sesión.
 
-**Inicio de Sesión Seguro:** Autenticación de usuarios mediante credenciales (correo electrónico y contraseña) con validación del lado del servidor. Al iniciar sesión exitosamente, el usuario es redirigido a un área privada.
-**Validación de Rutas Privadas:** Implementación de guardias de rutas que aseguran que solo los usuarios autenticados puedan acceder a ciertas páginas privadas, verificando la presencia de tokens en el sessionStorage.
+- **Inicio de Sesión Seguro:** Autenticación de usuarios mediante credenciales (correo electrónico y contraseña) con validación del lado del servidor. Al iniciar sesión exitosamente, el usuario es redirigido a un área privada.
+- **Validación de Rutas Privadas:** Implementación de guardias de rutas que aseguran que solo los usuarios autenticados puedan acceder a ciertas páginas privadas, verificando la presencia de tokens en el sessionStorage.
 **Cierre de Sesión:** Los usuarios pueden cerrar sesión en cualquier momento, eliminando el token de sessionStorage y redirigiendo a la página de inicio de sesión.
 
  ## 🛠️ Tecnologías Utilizadas
 
-**Backend:** Python, Flask, Flask-JWT-Extended, SQLAlchemy
-**Frontend:** React.js, React Router, Bootstrap para la UI
-**Almacenamiento de Sesión:** sessionStorage API para manejo de tokens de autenticación en el frontend
-**Base de Datos:** SQLite para almacenamiento de usuarios y datos de sesión
+- **Backend:** Python, Flask, Flask-JWT-Extended, SQLAlchemy
+- **Frontend:** React.js, React Router, Bootstrap para la UI
+- **Almacenamiento de Sesión:** sessionStorage API para manejo de tokens de autenticación en el frontend
+- **Base de Datos:** SQLite para almacenamiento de usuarios y datos de sesión
 
 ## 📂 Estructura de Componentes
 
-**<Signup>:** Componente que renderiza el formulario de registro de usuario.
-**<Login>:** Componente que renderiza el formulario de inicio de sesión.
-**<Private>:** Componente protegido que verifica la autenticación del usuario antes de renderizar contenido privado.
+- **<Signup>:** Componente que renderiza el formulario de registro de usuario.
+- **<Login>:** Componente que renderiza el formulario de inicio de sesión.
+- **<Private>:** Componente protegido que verifica la autenticación del usuario antes de renderizar contenido privado.
 
 ## 🌐 Mejores Prácticas de Seguridad
 

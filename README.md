@@ -1,81 +1,29 @@
-# WebApp boilerplate with React JS and Flask API
+#Sistema de Autenticación con Python, Flask y React.js
 
-Build web applications using React.js for the front end and python/flask for your backend API.
+Este proyecto es una aplicación web de autenticación de usuarios que combina un backend robusto con Python y Flask y un frontend dinámico construido con React.js. La solución sigue las mejores prácticas de desarrollo de APIs RESTful para la creación de sistemas de autenticación seguros, ofreciendo registro, inicio de sesión, validación de acceso a rutas privadas, y cierre de sesión.
 
-- Documentation can be found here: https://start.4geeksacademy.com/starters/react-flask
-- Here is a video on [how to use this template](https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b)
-- Integrated with Pipenv for package managing.
-- Fast deployment to heroku [in just a few steps here](https://start.4geeksacademy.com/backend/deploy-heroku-posgres).
-- Use of .env file.
-- SQLAlchemy integration for database abstraction.
+🚀 Características Principales
+**Registro de Usuario:** Permite a los usuarios registrarse con un correo electrónico y contraseña, almacenando la información de manera segura en una base de datos. Tras el registro, el usuario es redirigido al formulario de inicio de sesión.
 
-### 1) Installation:
+**Inicio de Sesión Seguro:** Autenticación de usuarios mediante credenciales (correo electrónico y contraseña) con validación del lado del servidor. Al iniciar sesión exitosamente, el usuario es redirigido a un área privada.
+**Validación de Rutas Privadas:** Implementación de guardias de rutas que aseguran que solo los usuarios autenticados puedan acceder a ciertas páginas privadas, verificando la presencia de tokens en el sessionStorage.
+**Cierre de Sesión:** Los usuarios pueden cerrar sesión en cualquier momento, eliminando el token de sessionStorage y redirigiendo a la página de inicio de sesión.
 
-> If you use Github Codespaces (recommended) or Gitpod this template will already come with Python, Node and the Posgres Database installed. If you are working locally make sure to install Python 3.10, Node 
+🛠️ Tecnologías Utilizadas
+**Backend:** Python, Flask, Flask-JWT-Extended, SQLAlchemy
+**Frontend:** React.js, React Router, Bootstrap para la UI
+**Almacenamiento de Sesión:** sessionStorage API para manejo de tokens de autenticación en el frontend
+**Base de Datos:** SQLite para almacenamiento de usuarios y datos de sesión
 
-It is recomended to install the backend first, make sure you have Python 3.8, Pipenv and a database engine (Posgress recomended)
+📂 Estructura de Componentes
+**<Signup>:** Componente que renderiza el formulario de registro de usuario.
+**<Login>:** Componente que renderiza el formulario de inicio de sesión.
+**<Private>:** Componente protegido que verifica la autenticación del usuario antes de renderizar contenido privado.
 
-1. Install the python packages: `$ pipenv install`
-2. Create a .env file based on the .env.example: `$ cp .env.example .env`
-3. Install your database engine and create your database, depending on your database you have to create a DATABASE_URL variable with one of the possible values, make sure you replace the valudes with your database information:
+🌐 Mejores Prácticas de Seguridad
+Uso de JSON Web Tokens (JWT) para la autenticación basada en tokens.
+Implementación de guardias de rutas para proteger contenido privado y redirigir a usuarios no autenticados.
+Validación del lado del servidor para todas las solicitudes de autenticación y manejo de tokens.
 
-| Engine    | DATABASE_URL                                        |
-| --------- | --------------------------------------------------- |
-| SQLite    | sqlite:////test.db                                  |
-| MySQL     | mysql://username:password@localhost:port/example    |
-| Postgress | postgres://username:password@localhost:5432/example |
-
-4. Migrate the migrations: `$ pipenv run migrate` (skip if you have not made changes to the models on the `./src/api/models.py`)
-5. Run the migrations: `$ pipenv run upgrade`
-6. Run the application: `$ pipenv run start`
-
-> Note: Codespaces users can connect to psql by typing: `psql -h localhost -U gitpod example`
-
-### Undo a migration
-
-You are also able to undo a migration by running
-
-```sh
-$ pipenv run downgrade
-```
-
-### Backend Populate Table Users
-
-To insert test users in the database execute the following command:
-
-```sh
-$ flask insert-test-users 5
-```
-
-And you will see the following message:
-
-```
-  Creating test users
-  test_user1@test.com created.
-  test_user2@test.com created.
-  test_user3@test.com created.
-  test_user4@test.com created.
-  test_user5@test.com created.
-  Users created successfully!
-```
-
-### **Important note for the database and the data inside it**
-
-Every Github codespace environment will have **its own database**, so if you're working with more people eveyone will have a different database and different records inside it. This data **will be lost**, so don't spend too much time manually creating records for testing, instead, you can automate adding records to your database by editing ```commands.py``` file inside ```/src/api``` folder. Edit line 32 function ```insert_test_data``` to insert the data according to your model (use the function ```insert_test_users``` above as an example). Then, all you need to do is run ```pipenv run insert-test-data```.
-
-### Front-End Manual Installation:
-
--   Make sure you are using node version 14+ and that you have already successfully installed and runned the backend.
-
-1. Install the packages: `$ npm install`
-2. Start coding! start the webpack dev server `$ npm run start`
-
-## Publish your website!
-
-This boilerplate it's 100% read to deploy with Render.com and Heroku in a matter of minutes. Please read the [official documentation about it](https://start.4geeksacademy.com/deploy).
-
-### Contributors
-
-This template was built as part of the 4Geeks Academy [Coding Bootcamp](https://4geeksacademy.com/us/coding-bootcamp) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about our [Full Stack Developer Course](https://4geeksacademy.com/us/coding-bootcamps/part-time-full-stack-developer), and [Data Science Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning).
-
-You can find other templates and resources like this at the [school github page](https://github.com/4geeksacademy/).
+📋 Más Información
+Consulta el diagrama de autenticación y las instrucciones detalladas de configuración en el repositorio para aprender más sobre cómo se implementa el registro de usuarios, la autenticación, la validación de tokens, y el manejo seguro de sesiones.
